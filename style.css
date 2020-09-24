@@ -1,0 +1,56 @@
+*{
+    margin:0;
+    padding:0;
+}
+
+
+h1{
+    text-align: center;
+}
+
+#NoteList {
+
+    float: left;
+    width: 30%;
+    background-color: darkgray;
+
+    height: auto;
+
+}
+
+#HeadLine {
+    font-size: large;
+    display: flex;
+
+    background-color: transparent;
+    border: transparent;
+    text-align: center;
+    height: auto;
+    width: 100%;
+
+}
+
+#NoteBody {
+
+    background-color: transparent;
+    border: transparent;
+    height: 100%;
+    width: 80%;
+}
+
+#Note {
+
+    float: left;
+    horiz-align: right;
+    width: 70%;
+    min-height: 1000px;
+    background: bisque;
+    height: auto;
+}
+
+.fuckYouBitch {
+    border: 2px solid;
+    margin-top: 0;
+    height: 5%;
+    width: auto;
+}
