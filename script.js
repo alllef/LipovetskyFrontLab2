@@ -1,15 +1,16 @@
 let divArr = [];
 let lastElement;
 
-
+let name = window.location.pathname;
 if (localStorage.length > 5) localStorage.clear();
-localStorage.clear();
-
+//localStorage.clear();
+//console.log(window.location.href);
+//console.log(window.location.pathname);
 restoreNotes();
 
 sortByDate();
+document.getElementById("AddButton").addEventListener("click", addDiv);
 
-//document.getElementById("Idonotknow0").addEventListener("click", () => downloadNote(makeNoteObject(this.id)));
 function addDiv() {
     let newElement = document.createElement("div");
 
@@ -24,9 +25,11 @@ function addDiv() {
     let noteObject = makeNoteObject(newElement.id);
 
     divArr.push(noteObject);
+
     newElement.addEventListener("click", () => downloadNote(noteObject));
 
-
+    let tmpString = "#" + newElement.id + " input";
+    document.querySelector(tmpString).addEventListener("click", () => deleteNote(noteObject));
     localStorage.setItem(newElement.id, JSON.stringify(noteObject));
     sortByDate();
 
@@ -38,32 +41,39 @@ function restoreNotes() {
     for (let i = 0; i < localStorage.length; i++) {
 
         let restoreObject = localStorage.getItem(localStorage.key(i));
-        restoreObject = JSON.parse(restoreObject);
-        divArr.push(restoreObject);
+        divArr.push(JSON.parse(restoreObject));
 
     }
 }
 
-function restoreNote(restoreObject) {
+function restoreNote(noteObject) {
 
     let newElement = document.createElement("div");
-    let tmpString = "#" + restoreObject.id + " h1";
+
 
     newElement.innerHTML = document.getElementById("Idonotknow0").innerHTML;
-    newElement.id = restoreObject.id;
+    newElement.id = noteObject.id;
     newElement.className = document.getElementById("Idonotknow0").className;
 
-    newElement.querySelector(tmpString).innerText = restoreObject.HeadLine;
-    tmpString = "#" + restoreObject.id + " h2";
-    newElement.querySelector(tmpString).innerText = restoreObject.stringDate;
-    newElement.addEventListener("click", () => downloadNote(restoreObject));
-    return newElement;
+    document.getElementById("NoteList").appendChild(newElement);
+    saveInformation(noteObject);
+
+    newElement.addEventListener("click", () => downloadNote(noteObject));
+
+    let tmpString = "#" + newElement.id + " input";
+    document.querySelector(tmpString).addEventListener("click", () => deleteNote(noteObject));
+
+
+
+
 }
 
 function downloadNote(noteObject) {
 
     if (lastElement !== undefined && lastElement !== null) saveNote(lastElement);
-
+    history.pushState({param: 'Value'}, '', name+"/"+noteObject.id);
+    console.log(window.location.pathname);
+    console.log("before changing");
 
     document.getElementById(noteObject.id).style["background"] = "yellow";
     document.getElementById("HeadLine").value = noteObject.HeadLine;
@@ -77,7 +87,7 @@ function downloadNote(noteObject) {
 function saveNote(noteObject) {
 
     let tmpDate = new Date();
-    let tmpString = "#" + noteObject.id + " h1";
+
 
     document.getElementById(noteObject.id).style["background"] = "darkgray";
 
@@ -86,20 +96,17 @@ function saveNote(noteObject) {
     noteObject.stringDate = getFormattedDate(tmpDate);
     noteObject.valueDate = tmpDate.getTime();
 
-    document.querySelector(tmpString).innerText = noteObject.HeadLine;
-    tmpString = "#" + noteObject.id + " h2";
-    document.querySelector(tmpString).innerText = noteObject.stringDate;
-
+    saveInformation(noteObject);
 
     localStorage.setItem(noteObject.id, JSON.stringify(noteObject));
     sortByDate();
-
 
 
 }
 
 function makeNoteObject(id) {
     let date = new Date();
+
     return {
         id,
         HeadLine: " Untitled",
@@ -123,8 +130,6 @@ function getFormattedDate(date) {
     return date.toLocaleString("ru", options);
 }
 
-document.getElementById("AddButton").addEventListener("click", addDiv);
-
 
 function sortByDate() {
 
@@ -135,7 +140,7 @@ function sortByDate() {
     }
 
     myNode.innerHTML = "<INPUT type = \"button\" id=\"AddButton\" VALUE=\"добавить заметку\">" +
-        "<div id=\"Idonotknow0\" class=\"fuckYouBitch\"> <h1>Untitled </h1> <h2> </h2> </div>";
+        "<div id=\"Idonotknow0\" class=\"fuckYouBitch\"><INPUT type = \"button\" class= \"deleteButton\" VALUE=\"X\"> <h1>Untitled </h1> <h2> </h2> <h3> </h3> </div>";
     document.getElementById("AddButton").addEventListener("click", addDiv);
 
     sleep(10);
@@ -144,17 +149,36 @@ function sortByDate() {
     document.getElementById("Idonotknow0").addEventListener("click", () => downloadNote(divArr[0]));
 
     for (let i = 0; i < divArr.length; i++) {
-        document.getElementById("NoteList").appendChild(restoreNote(divArr[i]));
+        restoreNote(divArr[i]);
+        sleep(1);
+
     }
+
+}
+
+function saveInformation(noteObject) {
+
+    let tmpString = "#" + noteObject.id;
+
+    document.querySelector(tmpString+" h1").innerText = noteObject.HeadLine;
+    document.querySelector(tmpString+" h2").innerText = noteObject.stringDate;
+    document.querySelector(tmpString+" h3").innerText = noteObject.NoteBody.slice(0, 5);
 
 }
 
 
 function sleep(milliseconds) {
     let start = new Date().getTime();
-    for (var i = 0; i < 1e7; i++) {
+    for (let i = 0; i < 1e7; i++) {
         if ((new Date().getTime() - start) > milliseconds) {
             break;
         }
     }
+}
+
+function deleteNote(noteObject) {
+    lastElement = null;
+    document.getElementById(noteObject.id).parentNode.removeChild(document.getElementById(noteObject.id));
+    divArr.splice(divArr.indexOf(noteObject), 1);
+    sortByDate();
 }
