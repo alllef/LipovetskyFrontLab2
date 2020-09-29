@@ -1,15 +1,20 @@
 let divArr = [];
 let lastElement;
 
-let name = window.location.pathname;
+
 if (localStorage.length > 5) localStorage.clear();
-//localStorage.clear();
-//console.log(window.location.href);
-//console.log(window.location.pathname);
+
+localStorage.clear();
+
 restoreNotes();
 
 sortByDate();
+
 document.getElementById("AddButton").addEventListener("click", addDiv);
+
+console.log(location.hash.length);
+if (location.hash.length > 0)
+    downloadNote(divArr.find(item => item.id === location.hash.replace('%20', ' ').slice(1)));
 
 function addDiv() {
     let newElement = document.createElement("div");
@@ -20,13 +25,12 @@ function addDiv() {
     newElement.className = document.getElementById("Idonotknow0").className;
 
 
-
     document.getElementById("NoteList").appendChild(newElement);
     let noteObject = makeNoteObject(newElement.id);
 
     divArr.push(noteObject);
 
-    newElement.addEventListener("click", () => downloadNote(noteObject));
+    document.querySelector("#" + newElement.id + " h1").addEventListener("click", () => downloadNote(noteObject));
 
     let tmpString = "#" + newElement.id + " input";
     document.querySelector(tmpString).addEventListener("click", () => deleteNote(noteObject));
@@ -58,12 +62,10 @@ function restoreNote(noteObject) {
     document.getElementById("NoteList").appendChild(newElement);
     saveInformation(noteObject);
 
-    newElement.addEventListener("click", () => downloadNote(noteObject));
+    document.querySelector("#" + newElement.id + " h1").addEventListener("click", () => downloadNote(noteObject));
 
     let tmpString = "#" + newElement.id + " input";
     document.querySelector(tmpString).addEventListener("click", () => deleteNote(noteObject));
-
-
 
 
 }
@@ -71,13 +73,12 @@ function restoreNote(noteObject) {
 function downloadNote(noteObject) {
 
     if (lastElement !== undefined && lastElement !== null) saveNote(lastElement);
-    history.pushState({param: 'Value'}, '', name+"/"+noteObject.id);
-    console.log(window.location.pathname);
-    console.log("before changing");
+    location.hash = noteObject.id;
 
-    document.getElementById(noteObject.id).style["background"] = "yellow";
+
+    document.getElementById(noteObject.id).style["background"] = "rgba(255,255,0,0.6)";
     document.getElementById("HeadLine").value = noteObject.HeadLine;
-    document.getElementById("NoteBody").value = noteObject.NoteBody;
+    if (noteObject.NoteBody.length > 0) document.getElementById("NoteBody").value = noteObject.NoteBody;
     document.getElementById("date").innerText = noteObject.stringDate;
 
     lastElement = noteObject;
@@ -109,8 +110,8 @@ function makeNoteObject(id) {
 
     return {
         id,
-        HeadLine: " Untitled",
-        NoteBody: " ",
+        HeadLine: "Untitled",
+        NoteBody: "",
         stringDate: getFormattedDate(date),
         valueDate: date.getTime()
     }
@@ -139,8 +140,8 @@ function sortByDate() {
         myNode.removeChild(myNode.lastChild);
     }
 
-    myNode.innerHTML = "<INPUT type = \"button\" id=\"AddButton\" VALUE=\"добавить заметку\">" +
-        "<div id=\"Idonotknow0\" class=\"fuckYouBitch\"><INPUT type = \"button\" class= \"deleteButton\" VALUE=\"X\"> <h1>Untitled </h1> <h2> </h2> <h3> </h3> </div>";
+    myNode.innerHTML = "<INPUT type = \"button\" id=\"AddButton\" VALUE=\"Add note\">" +
+        "<div id=\"Idonotknow0\" class=\"fuckYouBitch\"><INPUT type = \"button\" class= \"deleteButton\" VALUE=\"\"> <h1>Untitled </h1> <h2> </h2> <h3> </h3> </div>";
     document.getElementById("AddButton").addEventListener("click", addDiv);
 
     sleep(10);
@@ -151,7 +152,6 @@ function sortByDate() {
     for (let i = 0; i < divArr.length; i++) {
         restoreNote(divArr[i]);
         sleep(1);
-
     }
 
 }
@@ -160,9 +160,9 @@ function saveInformation(noteObject) {
 
     let tmpString = "#" + noteObject.id;
 
-    document.querySelector(tmpString+" h1").innerText = noteObject.HeadLine;
-    document.querySelector(tmpString+" h2").innerText = noteObject.stringDate;
-    document.querySelector(tmpString+" h3").innerText = noteObject.NoteBody.slice(0, 5);
+    document.querySelector(tmpString + " h1").innerText = noteObject.HeadLine;
+    document.querySelector(tmpString + " h2").innerText = noteObject.stringDate;
+    document.querySelector(tmpString + " h3").innerText = noteObject.NoteBody.slice(0, 20);
 
 }
 

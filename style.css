@@ -1,59 +1,117 @@
-*{
-    margin:0;
-    padding:0;
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;400;700&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Oswald', sans-serif;
+    color: white;
 }
 
-body{
-
+body {
+    display: flex;
+    background: rgba(0, 0, 0, 0.86);
+    color: white;
 }
-h1{
+
+h1 {
     text-align: center;
 }
 
+
 #NoteList {
-
-    float: left;
+    display: flex;
+    flex-direction: column;
     width: 30%;
-    background-color: darkgray;
+    background: rgba(128, 128, 128, 0.6);
 
-    height: auto;
+    min-height: 100vh;
+    max-height: 100%;
 
 }
 
 #HeadLine {
-    font-size: large;
-    display: flex;
+
+    margin-top: 5vh;
+    font-size: 36pt;
+    font-weight: bold;
 
     background-color: transparent;
-    border: transparent;
+    border-top: transparent;
+    border-right: transparent;
+    border-left: transparent;
     text-align: center;
-    height: auto;
-    width: 100%;
+
 
 }
 
 #NoteBody {
 
+    font-size: 14pt;
+    margin-left: 5vh;
+    flex-grow: 1;
     background-color: transparent;
     border: transparent;
-    height: 100%;
-    width: 80%;
+
 }
 
 #Note {
-
-    float: left;
+    display: flex;
+    flex-direction: column;
     horiz-align: right;
     width: 70%;
-    min-height: 1000px;
-    background: bisque;
-    height: auto;
+    min-height: 100vh;
+    max-height: 100%;
+
 }
 
 .fuckYouBitch {
+
     border-bottom: 2px solid;
     margin-top: 0;
-    height: 5%;
+    height: auto;
 
     width: auto;
+}
+
+.fuckYouBitch h1 {
+    width: inherit;
+
+}
+
+.fuckYouBitch h2 {
+
+    margin-left: 2vh;
+    float: left;
+
+}
+
+.fuckYouBitch h3 {
+
+    margin-right: 2vh;
+    float: right;
+    color: gray;
+    font-weight: normal;
+}
+
+#AddButton {
+    width: 100%;
+    color: green;
+}
+
+.deleteButton {
+
+    float: right;
+    border: transparent;
+    margin-top: 1vh;
+    width: 4vh;
+    height: 4vh;
+    background-size: cover;
+    background: url(DeleteIcon.svg) 100% 100% no-repeat;
+}
+
+
+#date {
+    text-align: center;
+    color: gray;
 }

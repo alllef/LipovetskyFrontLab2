@@ -11,7 +11,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="808d4766-1bd4-4bd6-b6d9-3d7928edb48c" name="Default Changelist" comment="working localStorage">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/script.js" afterDir="false" />
@@ -78,7 +77,8 @@
       <workItem from="1600871372855" duration="4134000" />
       <workItem from="1600876674427" duration="41490000" />
       <workItem from="1601022650349" duration="23028000" />
-      <workItem from="1601103033242" duration="15364000" />
+      <workItem from="1601103033242" duration="16708000" />
+      <workItem from="1601392396026" duration="17544000" />
     </task>
     <task id="LOCAL-00001" summary="can edit notes">
       <created>1600965721397</created>
@@ -115,7 +115,14 @@
       <option name="project" value="LOCAL" />
       <updated>1601062362976</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="added deleting. Some problems with delete functionality">
+      <created>1601212741677</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1601212741677</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -139,7 +146,8 @@
     <MESSAGE value="working localStorage" />
     <MESSAGE value="added sorting by date" />
     <MESSAGE value="added code refactoring" />
-    <option name="LAST_COMMIT_MESSAGE" value="added code refactoring" />
+    <MESSAGE value="added deleting. Some problems with delete functionality" />
+    <option name="LAST_COMMIT_MESSAGE" value="added deleting. Some problems with delete functionality" />
   </component>
   <component name="WindowStateProjectService">
     <state x="395" y="91" key="#Inspections" timestamp="1600957014030">
