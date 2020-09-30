@@ -143,7 +143,7 @@ function sortByDate() {
     }
 
     myNode.innerHTML = "<INPUT type = \"button\" id=\"AddButton\" VALUE=\"Add note\">" +
-        "<div id=\"Idonotknow0\" class=\"fuckYouBitch\"><INPUT type = \"button\" class= \"deleteButton\" VALUE=\"\"> <h1>Untitled </h1> <h2> </h2> <h3> </h3> </div>";
+        "<div id=\"Idonotknow0\" class=\"ShortcutNote\"><INPUT type = \"button\" class= \"deleteButton\" VALUE=\"\"> <h1>Untitled </h1> <h2> </h2> <h3> </h3> </div>";
     document.getElementById("AddButton").addEventListener("click", addDiv);
 
     sleep(10);

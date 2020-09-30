@@ -10,12 +10,7 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="808d4766-1bd4-4bd6-b6d9-3d7928edb48c" name="Default Changelist" comment="added design of notes. Almost final version">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/script.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
-    </list>
+    <list default="true" id="808d4766-1bd4-4bd6-b6d9-3d7928edb48c" name="Default Changelist" comment="added design of notes. Almost final version" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -79,7 +74,7 @@
       <workItem from="1601022650349" duration="23028000" />
       <workItem from="1601103033242" duration="16708000" />
       <workItem from="1601392396026" duration="17804000" />
-      <workItem from="1601478194657" duration="6791000" />
+      <workItem from="1601478194657" duration="7254000" />
     </task>
     <task id="LOCAL-00001" summary="can edit notes">
       <created>1600965721397</created>
@@ -130,7 +125,14 @@
       <option name="project" value="LOCAL" />
       <updated>1601413469536</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="added some functionality. Final version">
+      <created>1601485993184</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1601485993184</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -156,7 +158,8 @@
     <MESSAGE value="added code refactoring" />
     <MESSAGE value="added deleting. Some problems with delete functionality" />
     <MESSAGE value="added design of notes. Almost final version" />
-    <option name="LAST_COMMIT_MESSAGE" value="added design of notes. Almost final version" />
+    <MESSAGE value="added some functionality. Final version" />
+    <option name="LAST_COMMIT_MESSAGE" value="added some functionality. Final version" />
   </component>
   <component name="WindowStateProjectService">
     <state x="395" y="91" key="#Inspections" timestamp="1600957014030">
