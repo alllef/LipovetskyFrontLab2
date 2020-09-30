@@ -19,17 +19,6 @@ h1 {
 }
 
 
-#NoteList {
-    display: flex;
-    flex-direction: column;
-    width: 30%;
-    background: rgba(128, 128, 128, 0.6);
-
-    min-height: 100vh;
-    max-height: 100%;
-
-}
-
 #HeadLine {
 
     margin-top: 5vh;
@@ -65,49 +54,81 @@ h1 {
 
 }
 
-.fuckYouBitch {
+#Idonotknow0 {
+    display: none;
+}
 
+#NoteList {
+    display: flex;
+    flex-direction: column;
+    min-width: 30%;
+    background: rgba(128, 128, 128, 0.6);
+
+    min-height: 100vh;
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.fuckYouBitch {
+    display: grid;
+    grid-template-columns:  repeat(5, 1fr);
     border-bottom: 2px solid;
     margin-top: 0;
     height: auto;
 
     width: auto;
+
 }
 
 .fuckYouBitch h1 {
-    width: inherit;
+
+    grid-column: 1/5;
+    grid-row: 1;
+
 
 }
 
-.fuckYouBitch h2 {
+.fuckYouBitch h1:hover {
+    background: rgba(133, 132, 227, 0.8);
+}
 
+.fuckYouBitch h2 {
+    font-size: 14pt;
+    grid-column: 1/4;
+    grid-row: 2;
     margin-left: 2vh;
-    float: left;
+
 
 }
 
 .fuckYouBitch h3 {
-
+    font-size: 14pt;
+    grid-column: 4/6;
+    grid-row: 2;
     margin-right: 2vh;
-    float: right;
-    color: gray;
+    color: black;
     font-weight: normal;
 }
 
 #AddButton {
+    font-size: 12pt;
     width: 100%;
     color: green;
 }
 
 .deleteButton {
+    grid-column: 5;
+    grid-row: 1;
 
-    float: right;
     border: transparent;
-    margin-top: 1vh;
-    width: 4vh;
-    height: 4vh;
+
+
     background-size: cover;
-    background: url(DeleteIcon.svg) 100% 100% no-repeat;
+    background: url(DeleteIcon.svg) no-repeat center center;
+}
+
+.deleteButton:hover {
+    background-color: rgba(229, 32, 32, 0.8);
 }
 
 

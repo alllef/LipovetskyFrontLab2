@@ -1,27 +1,25 @@
 let divArr = [];
 let lastElement;
+let idCounter = 0;
 
 
-if (localStorage.length > 5) localStorage.clear();
-
-localStorage.clear();
 
 restoreNotes();
 
 sortByDate();
 
 document.getElementById("AddButton").addEventListener("click", addDiv);
+window.addEventListener('unload', () => saveNote(lastElement));
 
-console.log(location.hash.length);
-if (location.hash.length > 0)
-    downloadNote(divArr.find(item => item.id === location.hash.replace('%20', ' ').slice(1)));
+downloadById();
+
 
 function addDiv() {
     let newElement = document.createElement("div");
 
 
     newElement.innerHTML = document.getElementById("Idonotknow0").innerHTML;
-    newElement.id = "Idonotknow" + (divArr.length + 1);
+    newElement.id = "Idonotknow" + (++idCounter);
     newElement.className = document.getElementById("Idonotknow0").className;
 
 
@@ -34,14 +32,17 @@ function addDiv() {
 
     let tmpString = "#" + newElement.id + " input";
     document.querySelector(tmpString).addEventListener("click", () => deleteNote(noteObject));
+
     localStorage.setItem(newElement.id, JSON.stringify(noteObject));
+    localStorage.setItem("number", idCounter);
     sortByDate();
 
 }
 
 function restoreNotes() {
     localStorage.removeItem("language");
-
+    idCounter = localStorage.getItem("number");
+    localStorage.removeItem("number");
     for (let i = 0; i < localStorage.length; i++) {
 
         let restoreObject = localStorage.getItem(localStorage.key(i));
@@ -78,7 +79,7 @@ function downloadNote(noteObject) {
 
     document.getElementById(noteObject.id).style["background"] = "rgba(255,255,0,0.6)";
     document.getElementById("HeadLine").value = noteObject.HeadLine;
-    if (noteObject.NoteBody.length > 0) document.getElementById("NoteBody").value = noteObject.NoteBody;
+    document.getElementById("NoteBody").value = noteObject.NoteBody;
     document.getElementById("date").innerText = noteObject.stringDate;
 
     lastElement = noteObject;
@@ -136,6 +137,7 @@ function sortByDate() {
 
     const myNode = document.getElementById("NoteList");
 
+
     while (myNode.firstChild) {
         myNode.removeChild(myNode.lastChild);
     }
@@ -147,7 +149,7 @@ function sortByDate() {
     sleep(10);
 
     divArr.sort((prev, next) => (next.valueDate - prev.valueDate));
-    document.getElementById("Idonotknow0").addEventListener("click", () => downloadNote(divArr[0]));
+
 
     for (let i = 0; i < divArr.length; i++) {
         restoreNote(divArr[i]);
@@ -160,9 +162,9 @@ function saveInformation(noteObject) {
 
     let tmpString = "#" + noteObject.id;
 
-    document.querySelector(tmpString + " h1").innerText = noteObject.HeadLine;
+    document.querySelector(tmpString + " h1").innerText = noteObject.HeadLine.slice(0, 10);
     document.querySelector(tmpString + " h2").innerText = noteObject.stringDate;
-    document.querySelector(tmpString + " h3").innerText = noteObject.NoteBody.slice(0, 20);
+    document.querySelector(tmpString + " h3").innerText = noteObject.NoteBody.slice(0, 10);
 
 }
 
@@ -181,4 +183,11 @@ function deleteNote(noteObject) {
     document.getElementById(noteObject.id).parentNode.removeChild(document.getElementById(noteObject.id));
     divArr.splice(divArr.indexOf(noteObject), 1);
     sortByDate();
+}
+
+function downloadById() {
+    let chosenNoteObject;
+    if (location.hash.length > 0) chosenNoteObject = divArr.find(item => item.id === location.hash.slice(1));
+    if (chosenNoteObject !== undefined) downloadNote(chosenNoteObject);
+
 }
