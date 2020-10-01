@@ -1,7 +1,6 @@
-let divArr = [];
+let shortcutNoteArr = [];
 let lastElement;
 let idCounter = 0;
-
 
 
 restoreNotes();
@@ -26,7 +25,7 @@ function addDiv() {
     document.getElementById("NoteList").appendChild(newElement);
     let noteObject = makeNoteObject(newElement.id);
 
-    divArr.push(noteObject);
+    shortcutNoteArr.push(noteObject);
 
     document.querySelector("#" + newElement.id + " h1").addEventListener("click", () => downloadNote(noteObject));
 
@@ -46,7 +45,7 @@ function restoreNotes() {
     for (let i = 0; i < localStorage.length; i++) {
 
         let restoreObject = localStorage.getItem(localStorage.key(i));
-        divArr.push(JSON.parse(restoreObject));
+        shortcutNoteArr.push(JSON.parse(restoreObject));
 
     }
 }
@@ -148,11 +147,11 @@ function sortByDate() {
 
     sleep(10);
 
-    divArr.sort((prev, next) => (next.valueDate - prev.valueDate));
+    shortcutNoteArr.sort((prev, next) => (next.valueDate - prev.valueDate));
 
 
-    for (let i = 0; i < divArr.length; i++) {
-        restoreNote(divArr[i]);
+    for (let i = 0; i < shortcutNoteArr.length; i++) {
+        restoreNote(shortcutNoteArr[i]);
         sleep(1);
     }
 
@@ -181,13 +180,13 @@ function sleep(milliseconds) {
 function deleteNote(noteObject) {
     lastElement = null;
     document.getElementById(noteObject.id).parentNode.removeChild(document.getElementById(noteObject.id));
-    divArr.splice(divArr.indexOf(noteObject), 1);
+    shortcutNoteArr.splice(shortcutNoteArr.indexOf(noteObject), 1);
     sortByDate();
 }
 
 function downloadById() {
     let chosenNoteObject;
-    if (location.hash.length > 0) chosenNoteObject = divArr.find(item => item.id === location.hash.slice(1));
+    if (location.hash.length > 0) chosenNoteObject = shortcutNoteArr.find(item => item.id === location.hash.slice(1));
     if (chosenNoteObject !== undefined) downloadNote(chosenNoteObject);
 
 }

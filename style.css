@@ -63,7 +63,7 @@ h1 {
     flex-direction: column;
     min-width: 30%;
     background: rgba(128, 128, 128, 0.6);
-
+    border-right: 2px solid black;
     min-height: 100vh;
     max-height: 100%;
     max-width: 100%;
