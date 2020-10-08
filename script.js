@@ -180,6 +180,7 @@ function sleep(milliseconds) {
 function deleteNote(noteObject) {
     lastElement = null;
     document.getElementById(noteObject.id).parentNode.removeChild(document.getElementById(noteObject.id));
+    localStorage.removeItem(noteObject.id);
     shortcutNoteArr.splice(shortcutNoteArr.indexOf(noteObject), 1);
     sortByDate();
 }
